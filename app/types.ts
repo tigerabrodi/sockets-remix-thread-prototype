@@ -4,7 +4,3 @@ export type CommentType = {
   text: string
   date: string
 }
-
-export const storageKeys = {
-  authorName: 'authorName',
-}

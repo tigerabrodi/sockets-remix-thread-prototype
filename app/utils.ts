@@ -1,11 +1,11 @@
 import { build, fake } from '@jackfranklin/test-data-bot'
 
-type UserName = {
-  name: string
+type AuthorName = {
+  authorName: string
 }
 
-export const buildUserName = build<UserName>('UserName', {
+export const buildAuthorName = build<AuthorName>('AuthorName', {
   fields: {
-    name: fake((faker) => faker.name.firstName()),
+    authorName: fake((faker) => faker.name.firstName()),
   },
 })
