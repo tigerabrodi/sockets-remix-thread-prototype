@@ -36,8 +36,6 @@ export default function Thread() {
     })
   }, [socket])
 
-  console.log({ comments })
-
   return (
     <main style={{ minHeight: '100%', paddingBottom: 20 }}>
       <h1 style={{ marginTop: 60, fontSize: 100 }}>Thread</h1>
