@@ -1,0 +1,24 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  box-sizing: border-box;
+  height: 100%;
+  font-family: sans-serif;
+  background-color: rgb(195, 204, 212);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

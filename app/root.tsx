@@ -1,12 +1,16 @@
 import {
   Links,
+  LinksFunction,
   LiveReload,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
 } from "remix";
+import styles from "./styles.css";
 import type { MetaFunction } from "remix";
+
+export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 
 export const meta: MetaFunction = () => {
   return {
