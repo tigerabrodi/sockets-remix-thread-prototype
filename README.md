@@ -46,7 +46,7 @@ Since our data is quite relational & structured, and considering today's ways of
 
 Data modelling in an image:
 
-This is surely not complete, please check open questions section below.
+This is surely not complete, please check [open questions section](https://github.com/tigerabrodi/sockets-remix-thread-prototype#open-questionsthoughts) below.
 
 ![reactions-drawing](https://user-images.githubusercontent.com/49603590/149671539-e70a1466-aff9-4f0b-8db0-b169ffdab15c.png)
 
