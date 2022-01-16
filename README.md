@@ -46,6 +46,8 @@ Since our data is quite relational & structured, and considering today's ways of
 
 Data modelling in an image:
 
+
+
 ### Tools (ORM and DB)
 
 **Prisma as ORM:**
@@ -87,3 +89,7 @@ It is important that we write the right tests, and really focus on resembling th
 For the tests since we will likely need to spin up multiple tabs or browsers, in order to test the real-time behavior and how it works for multiple users, Playwright fits into this.
 
 Cypress is amazing, but for our situation it is limited, and we won't achieve full confidence by testing with a single browser.
+
+## Open Questions/Thoughts
+
+If we switch to NoSQL, we could dynamically add a count to each comment to keep track of a specific reaction, by composing it with its label. An example: "smiley" + "Count", would turn into **smileyCount** property, which would exist as long as it is equal to or greater than one. Otherwise we may have to add a count column for each type of reaction via its label. Can likely be done by writing a script, but how efficient that is, is a different question.  
