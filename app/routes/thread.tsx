@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Comment } from '~/components/Comment'
-import { CommentType } from '~/types'
+import { CommentType, storageKeys } from '~/types'
 import { buildUserName } from '~/utils'
 
 export default function Thread() {
@@ -11,7 +11,7 @@ export default function Thread() {
     const hasEnteredNoName = localStorage.getItem('name') === null
     if (hasEnteredNoName) {
       const { name } = buildUserName()
-      localStorage.setItem('name', name)
+      localStorage.setItem(storageKeys.authorName, name)
     }
   }, [])
 

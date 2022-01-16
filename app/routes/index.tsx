@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { useNavigate } from 'remix'
+import { storageKeys } from '~/types'
 
 export default function Enter() {
   const [name, setName] = React.useState('')
@@ -11,7 +12,7 @@ export default function Enter() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    localStorage.setItem('name', name)
+    localStorage.setItem(storageKeys.authorName, name)
     navigate('/thread')
   }
 
