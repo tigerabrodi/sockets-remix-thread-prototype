@@ -1,6 +1,14 @@
-# Welcome to Remix!
+# Real-time comments prototype
 
-- [Remix Docs](https://remix.run/docs)
+Simple demonstration of real-time commenting.
+
+## Installation
+
+After forking it, you need two environment variables in an `.env` file for it to run during development.
+
+`PORT`: **3000**
+
+`CONNECTION_URL`: **http://localhost:3000**
 
 ## Development
 
@@ -20,40 +28,22 @@ npm run start:dev
 
 This starts your app in development mode, which will purge the server require cache when Remix rebuilds assets so you don't need a process manager restarting the express server.
 
-## Deployment
+## How would we scale and make this production-ready?
 
-First, build your app for production:
+My initial diagram of how the design may be.
 
-```sh
-npm run build
-```
+![real-time-comments-prototype-scale](https://user-images.githubusercontent.com/49603590/149663865-a7e10187-0309-45f3-b465-d95cc2f09b2d.png)
 
-Then run the app in production mode:
+- On the first render of the clients, we need to return the initial data, which the clients would get by making GET requests to API endpoints like: **/comments**, **/reactions** etc. The APIs would read from the database using the ORM. 
 
-```sh
-npm start
-```
+- After the first render, the clients can listen for updates or write to the sockets (listen to events and emit events when writing).
 
-Now you'll need to pick a host to deploy it to.
+- When events have been emitted from a client, the server responds to the sender and all the other related clients with the data, then the write to the database happens. The write to the database sort of happens in the _background_. This way it isn't blocking the clients from receiving the data.
 
-### DIY
+### Data (User, Comment, Reaction)
 
-If you're familiar with deploying express applications you should be right at home just make sure to deploy the output of `remix build`
+### Tools (ORM and DB)
 
-- `server/build/`
-- `public/build/`
+### Pagination when tons of comments
 
-### Using a Template
-
-When you ran `npx create-remix@latest` there were a few choices for hosting. You can run that again to create a new project, then copy over your `app/` folder to the new project that's pre-configured for your target server.
-
-```sh
-cd ..
-# create a new project, and pick a pre-configured host
-npx create-remix@latest
-cd my-new-remix-app
-# remove the new project's app (not the old one!)
-rm -rf app
-# copy your app over
-cp -R ../my-old-remix-app/app app
-```
+### Confidence
