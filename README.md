@@ -4,7 +4,7 @@ Simple demonstration of real-time commenting.
 
 ## Installation
 
-After forking it, you need two environment variables in an `.env` file for it to run during development.
+After forking it, run `npm install`, then you need two environment variables in an `.env` file for it to run during development.
 
 `PORT`: **3000**
 
