@@ -84,4 +84,6 @@ In order to achieve confidence our app is working as it should, we of course nee
 
 It is important that we write the right tests, and really focus on resembling the user, otherwise at least focus on the behavior, and not test implementation details.
 
-Cypress has an amazing DX and debugging experience. We can use Cypress for the tests where Cypress isn't limited, i.e. spinning up two tabs/browsers etc. For such tests Playwright is better suited.
+For the tests since we will likely need to spin up multiple tabs or browsers, in order to test the real-time behavior and how it works for multiple users, Playwright fits into this.
+
+Cypress is amazing, but for our situation it is limited, and we won't achieve full confidence by testing with a single browser.
