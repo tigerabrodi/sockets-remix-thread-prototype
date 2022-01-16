@@ -9,6 +9,8 @@
     "resolveJsonModule": true,
     "target": "ES2019",
     "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "baseUrl": ".",
     "paths": {
       "~/*": ["./app/*"]

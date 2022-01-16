@@ -2,12 +2,26 @@ const path = require('path')
 const express = require('express')
 const compression = require('compression')
 const morgan = require('morgan')
+const { createServer } = require('http')
+const { Server } = require('socket.io')
 const { createRequestHandler } = require('@remix-run/express')
+require('dotenv').config()
 
 const MODE = process.env.NODE_ENV
 const BUILD_DIR = path.join(process.cwd(), 'server/build')
 
 const app = express()
+
+const httpServer = createServer(app)
+const io = new Server(httpServer)
+
+io.on('connection', (socket) => {
+  socket.on('send-client-comment', (comment) => {
+    socket.emit('send-server-comment', comment)
+    socket.broadcast.emit('send-server-comment', comment)
+  })
+})
+
 app.use(compression())
 
 // You may want to be more aggressive with this caching
@@ -28,8 +42,8 @@ app.all(
       }
 )
 
-const port = process.env.PORT || 3000
-app.listen(port, () => {
+const port = process.env.PORT
+httpServer.listen(port, () => {
   console.log(`Express server listening on port ${port}`)
 })
 
