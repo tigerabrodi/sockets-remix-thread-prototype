@@ -1,29 +1,29 @@
-import * as React from "react";
-import { useNavigate } from "remix";
+import * as React from 'react'
+import { useNavigate } from 'remix'
 
 export default function Enter() {
-  const [name, setName] = React.useState("");
-  const navigate = useNavigate();
+  const [name, setName] = React.useState('')
+  const navigate = useNavigate()
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value);
-  };
+    setName(event.target.value)
+  }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    localStorage.setItem("name", name);
-    navigate("/thread");
-  };
+    event.preventDefault()
+    localStorage.setItem('name', name)
+    navigate('/thread')
+  }
 
   return (
-    <main style={{ height: "100%" }}>
+    <main style={{ height: '100%' }}>
       <h1 style={{ marginTop: 140, fontSize: 40 }}>Enter Thread</h1>
       <form
         onSubmit={handleSubmit}
         style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
         }}
       >
         <label htmlFor="name" style={{ marginTop: 100, fontSize: 20 }}>
@@ -45,15 +45,15 @@ export default function Enter() {
         />
         <button
           style={{
-            backgroundColor: "black",
-            color: "white",
-            fontWeight: "bold",
+            backgroundColor: 'black',
+            color: 'white',
+            fontWeight: 'bold',
             width: 60,
             height: 30,
-            border: "none",
-            boxShadow: "0 0 3px rgba(0, 0, 0, 0.4)",
+            border: 'none',
+            boxShadow: '0 0 3px rgba(0, 0, 0, 0.4)',
             marginTop: 30,
-            cursor: "pointer",
+            cursor: 'pointer',
           }}
           type="submit"
         >
@@ -61,5 +61,5 @@ export default function Enter() {
         </button>
       </form>
     </main>
-  );
+  )
 }

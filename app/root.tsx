@@ -6,18 +6,18 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-} from "remix";
-import styles from "./styles.css";
-import type { MetaFunction } from "remix";
+} from 'remix'
+import styles from './styles.css'
+import type { MetaFunction } from 'remix'
 
-export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
+export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }]
 
 export const meta: MetaFunction = () => {
   return {
-    title: "Real Time Comments Prototype",
-    description: "Built with Remix and Socket IO.",
-  };
-};
+    title: 'Real Time Comments Prototype',
+    description: 'Built with Remix and Socket IO.',
+  }
+}
 
 export default function App() {
   return (
@@ -32,8 +32,8 @@ export default function App() {
         <Outlet />
         <ScrollRestoration />
         <Scripts />
-        {process.env.NODE_ENV === "development" && <LiveReload />}
+        {process.env.NODE_ENV === 'development' && <LiveReload />}
       </body>
     </html>
-  );
+  )
 }
