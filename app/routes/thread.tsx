@@ -1,8 +1,11 @@
 import * as React from 'react'
+import { Comment } from '~/components/Comment'
+import { CommentType } from '~/types'
 import { buildUserName } from '~/utils'
 
 export default function Thread() {
   const [commentValue, setCommentValue] = React.useState('')
+  const [comments, setComments] = React.useState<CommentType[]>([])
 
   React.useEffect(() => {
     const hasEnteredNoName = localStorage.getItem('name') === null
@@ -60,20 +63,10 @@ export default function Thread() {
           rowGap: 20,
         }}
       >
-        <li
-          style={{
-            border: '2px solid black',
-            backgroundColor: 'lightgray',
-            width: 400,
-            paddingLeft: 20,
-            paddingTop: 5,
-            paddingBottom: 4,
-            minHeight: 70,
-          }}
-        >
-          <h1 style={{ fontSize: 25 }}>Max</h1>
-          <p style={{ fontSize: 15 }}>This is fun!</p>
-        </li>
+        {comments.length > 0 &&
+          comments.map((comment) => (
+            <Comment key={comment.id} comment={comment} />
+          ))}
       </ul>
     </main>
   )
