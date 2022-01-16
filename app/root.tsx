@@ -4,12 +4,15 @@ import {
   Meta,
   Outlet,
   Scripts,
-  ScrollRestoration
+  ScrollRestoration,
 } from "remix";
 import type { MetaFunction } from "remix";
 
 export const meta: MetaFunction = () => {
-  return { title: "New Remix App" };
+  return {
+    title: "Real Time Comments Prototype",
+    description: "Built with Remix and Socket IO.",
+  };
 };
 
 export default function App() {
