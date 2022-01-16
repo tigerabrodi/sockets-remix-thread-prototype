@@ -42,7 +42,7 @@ My initial diagram of how the design may be.
 
 ### Data (User, Comment, Reaction)
 
-Since our data is quite relational & structured, and considering today's ways of scaling SQL databases (i.e. Vitess), we can go with a SQL database.
+Since our data is quite relational & structured, and considering today's ways of scaling SQL databases (i.e. Vitess), a SQL database fits our scenario.
 
 Data modelling in an image:
 
