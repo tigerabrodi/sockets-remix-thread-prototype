@@ -15,10 +15,17 @@ const app = express()
 const httpServer = createServer(app)
 const io = new Server(httpServer)
 
+let comments = []
 io.on('connection', (socket) => {
-  socket.on('send-client-comment', (comment) => {
-    socket.emit('send-server-comment', comment)
-    socket.broadcast.emit('send-server-comment', comment)
+  socket.on('send-client-comment', (newComment) => {
+    const newComments = [newComment, ...comments].sort(
+      (a, b) => new Date(a.date) - new Date(b.date)
+    )
+
+    socket.emit('send-server-comment', newComments)
+    socket.broadcast.emit('send-server-comment', newComments)
+
+    comments = newComments
   })
 })
 

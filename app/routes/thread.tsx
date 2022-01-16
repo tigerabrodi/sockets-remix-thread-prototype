@@ -1,11 +1,14 @@
 import * as React from 'react'
+import { v4 } from 'uuid'
 import { Comment } from '~/components/Comment'
 import { CommentType, storageKeys } from '~/types'
 import { buildUserName } from '~/utils'
+import { wsContext } from '~/ws-context'
 
 export default function Thread() {
-  const [commentValue, setCommentValue] = React.useState('')
+  const [commentText, setCommentText] = React.useState('')
   const [comments, setComments] = React.useState<CommentType[]>([])
+  const socket = React.useContext(wsContext)
 
   React.useEffect(() => {
     const hasEnteredNoName = localStorage.getItem('name') === null
@@ -16,12 +19,29 @@ export default function Thread() {
   }, [])
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setCommentValue(event.target.value)
+    setCommentText(event.target.value)
   }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    const newComment: CommentType = {
+      id: v4(),
+      text: commentText,
+      authorName: localStorage.getItem(storageKeys.authorName) as string,
+      date: new Date().toISOString(),
+    }
+
+    socket!.emit('send-client-comment', newComment)
+    setCommentText('')
   }
+
+  React.useEffect(() => {
+    if (!socket) return
+
+    socket.on('send-server-comment', (newComments) => {
+      setComments(newComments)
+    })
+  }, [socket])
 
   return (
     <main style={{ minHeight: '100%', paddingBottom: 20 }}>
@@ -41,7 +61,7 @@ export default function Thread() {
         </label>
         <textarea
           id="comment"
-          value={commentValue}
+          value={commentText}
           onChange={handleChange}
           style={{ width: 400, height: 100, fontSize: 15, padding: 15 }}
         />
