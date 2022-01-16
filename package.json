@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "remix-app-template",
-  "description": "",
-  "license": "",
+  "name": "real-time-comments-prototype",
+  "description": "Thread prototype built with remix and socket io.",
+  "license": "MIT",
   "scripts": {
     "build": "remix build",
     "dev": "remix watch",
@@ -11,15 +11,18 @@
     "start:dev": "cross-env NODE_ENV=development node server/index.js"
   },
   "dependencies": {
+    "@remix-run/express": "^1.1.1",
     "@remix-run/react": "^1.1.1",
+    "compression": "^1.7.4",
+    "cross-env": "^7.0.3",
+    "dotenv": "^12.0.3",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "remix": "^1.1.1",
-    "@remix-run/express": "^1.1.1",
-    "compression": "^1.7.4",
-    "cross-env": "^7.0.3",
-    "express": "^4.17.1",
-    "morgan": "^1.10.0"
+    "socket.io": "^4.4.1",
+    "socket.io-client": "^4.4.1"
   },
   "devDependencies": {
     "@remix-run/dev": "^1.1.1",
