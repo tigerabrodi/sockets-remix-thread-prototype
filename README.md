@@ -34,7 +34,7 @@ My initial diagram of how the design may be.
 
 ![real-time-comments-prototype-scale](https://user-images.githubusercontent.com/49603590/149663865-a7e10187-0309-45f3-b465-d95cc2f09b2d.png)
 
-- On the first render of the clients, we need to return the initial data, which the clients would get by making GET requests to API endpoints like: **/comments**, **/reactions** etc. The APIs would read from the database using the ORM. 
+- On the first render of the clients, we need to return the initial data, which the clients would get by making GET requests to API endpoints like: **/comments**, **/reactions/{commentId}** etc. The APIs would read from the database using the ORM. 
 
 - After the first render, the clients can listen for updates or write to the sockets (listen to events and emit events when writing).
 
@@ -42,8 +42,46 @@ My initial diagram of how the design may be.
 
 ### Data (User, Comment, Reaction)
 
+Since our data is quite relational & structured, and considering today's ways of scaling SQL databases (i.e. Vitess), we can go with a SQL database.
+
+Data modelling in an image:
+
 ### Tools (ORM and DB)
+
+**Prisma as ORM:**
+
+- Amazing DX, type-safety is super awesome, works well with SQL databases.
+
+- Build fast and make fewer errors.
+
+**Planetscale as DB:**
+
+- A SQL database.
+
+- Based on Vitess. Performant, highly available, can scale horizontally and more.
+
+- From their website: "...With horizontal sharding and unlimited connections, you can harness the power of Vitess without hiring a team of engineers."
+
+- Amazing Git-like work flow to be productive.
+
+- Works great with prisma.
 
 ### Pagination when tons of comments
 
+Three options come to mind when handling pagination for comments, i.e. in a Slack Thread.
+
+- **Infinite Paging:** User scrolls down to the bottom and clicks on a button to load the next 10 comments.
+
+- **Infinite Loading:** User scrolls down to the bottom and the next 10 comments gets loaded. We can detect that via intersection oberserver.
+
+- **List virtualization:** Only render comments that is within the user's window (what the user sees), and dynamically render them as the user scrolls.
+
+The option with the best UX for i.e. a Slack Thread, to me would be **List virtualization**. This way we keep it performant and don't load all the comments, but at the same time from the user's perspective, it feels nice, since they don't have to consistently wait for another bunch of comments to be loaded.
+
 ### Confidence
+
+In order to achieve confidence our app is working as it should, we of course need testing.
+
+It is important that we write the right tests, and really focus on resembling the user, otherwise at least focus on the behavior, and not test implementation details.
+
+Cypress has an amazing DX and debugging experience. We can use Cypress for the tests where Cypress isn't limited, i.e. spinning up two tabs/browsers etc. For such tests Playwright is better suited.
