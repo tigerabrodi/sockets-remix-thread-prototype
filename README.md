@@ -46,7 +46,9 @@ Since our data is quite relational & structured, and considering today's ways of
 
 Data modelling in an image:
 
+This is surely not complete, please check open questions section below.
 
+![reactions-drawing](https://user-images.githubusercontent.com/49603590/149671539-e70a1466-aff9-4f0b-8db0-b169ffdab15c.png)
 
 ### Tools (ORM and DB)
 
@@ -92,4 +94,16 @@ Cypress is amazing, but for our situation it is limited, and we won't achieve fu
 
 ## Open Questions/Thoughts
 
-If we switch to NoSQL, we could dynamically add a count to each comment to keep track of a specific reaction, by composing it with its label. An example: "smiley" + "Count", would turn into **smileyCount** property, which would exist as long as it is equal to or greater than one. Otherwise we may have to add a count column for each type of reaction via its label. Can likely be done by writing a script, but how efficient that is, is a different question.  
+- **Reaction Model:**
+
+Right now I'm not 100% sure if the data modelling would work as in the diagram. 
+
+Where do we get our labels? 
+
+The encoding of the emojis, from researching it seems like they are typically encoded as the type **utf8mb4**?
+
+- **Count of Reactions:**
+
+If we switch to NoSQL, we could dynamically add a count column to each **comment** to keep track of the amount of a specific reaction, by composing it with its label. An example: "smiley" + "Count", would turn into **smileyCount** property, which would exist as long as it is equal to or greater than one, if less, it gets removed.
+
+Otherwise we may have to add a count column for each type of reaction via its label. Can likely be done by writing a script, but how efficient that is, is a different question.
