@@ -107,3 +107,7 @@ The encoding of the emojis, from researching it seems like they are typically en
 If we switch to NoSQL, we could dynamically add a count column to each **comment** to keep track of the amount of a specific reaction, by composing it with its label. An example: "smiley" + "Count", would turn into **smileyCount** property, which would exist as long as it is equal to or greater than one, if less, it gets removed.
 
 Otherwise we may have to add a count column for each type of reaction via its label. Can likely be done by writing a script, but how efficient that is, is a different question.
+
+## Demo
+
+https://user-images.githubusercontent.com/49603590/149712733-f80deb6c-a049-4956-93cc-a6d0f7e3fa1c.mp4
