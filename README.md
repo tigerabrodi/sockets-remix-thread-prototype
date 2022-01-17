@@ -98,7 +98,7 @@ Cypress is amazing, but for our situation it is limited, and we won't achieve fu
 
 Right now I'm not 100% sure if the data modelling would work as in the diagram. 
 
-Where do we get our labels? 
+Where do we get our labels (3rd party API, hard-code, ...)? Do we even need a label? I could imagine if a user searches for an emoji typing "smiley" for example.
 
 The encoding of the emojis, from researching it seems like they are typically encoded as the type **utf8mb4**?
 
