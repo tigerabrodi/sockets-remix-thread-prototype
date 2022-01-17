@@ -18,14 +18,14 @@ const io = new Server(httpServer)
 let comments = []
 io.on('connection', (socket) => {
   socket.on('send-client-comment', (newComment) => {
-    const newComments = [newComment, ...comments].sort(
+    const newCommentsSorted = [newComment, ...comments].sort(
       (a, b) => new Date(a.date) - new Date(b.date)
     )
 
-    socket.emit('send-server-comment', newComments)
-    socket.broadcast.emit('send-server-comment', newComments)
+    socket.emit('send-server-comment', newCommentsSorted)
+    socket.broadcast.emit('send-server-comment', newCommentsSorted)
 
-    comments = newComments
+    comments = newCommentsSorted
   })
 })
 
